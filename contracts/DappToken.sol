@@ -2,12 +2,15 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 contract	DappToken {
-	// Constructor
-	// Set the value of tokens we have
-	// Read the total of tokens got
 	uint256 public totalSupply;
+	mapping (address => uint256) public balanceOf;
 
-	constructor () {
-		totalSupply = 1000000;
+	constructor (uint256 _initialSupply) {
+		totalSupply = _initialSupply;
+		balanceOf[msg.sender] = totalSupply;
+	}
+
+	function _balanceOf(address _owner) public view returns (uint256) {
+		return balanceOf[_owner];
 	}
 }
